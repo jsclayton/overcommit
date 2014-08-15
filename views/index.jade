@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .row
+    .col-xs-12.col-sm-12
+      h2 Redeem Token
+  .row
+    .col-xs-12.col-sm-12
+      form#redeem(role='form', action='/', method='POST')
+        input#_csrf(type='hidden', name='_csrf', value='#{csrf}')
+        .form-group
+          label.control-label.sr-only(for='token') Enter token
+          input.input-lg.form-control.text-uppercase#token(type='text', placeholder='Enter your token', name='token', autocorrect='off', autocapitalize='off', maxlength='12', value='#{token}')
+          span.glyphicon.glyphicon-remove.form-control-feedback.hidden
+        button.btn.btn-primary.btn-block.btn-lg(type='submit') Redeem

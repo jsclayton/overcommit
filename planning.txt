@@ -1,0 +1,50 @@
+Add and/or generate tokens
+- Should generate the token, the date, and what it was used for
+- Probably should only be generate, but this late in the game I could instead
+  shot the ones I generated into the database by hand
+
+Add promo codes
+- Need to have the code, generation date, and app version?
+
+Add app/app versions?
+- Could this be a way to tie everything together?
+
+
+A token represents a free download of an app
+Redeeming a token should assign it the oldest valid promo code for the app
+A promo code is valid if:
+  1. It is 28 days or less old (now < generated_at + 28 days)
+  2. It's app status is 'Ready for Sale' or 'Pending Developer Release' (is_valid = true)
+  3. It has not yet been assigned to a token (token_id = null)
+If a valid promo code is not available the user should receive an error
+An email should be sent when the number of valid promo codes is less than the
+  number of unclaimed tokens
+
+
+Overcommit = (# unclaimed tokens - # unclaimed promo codes) / # unclaimed tokens
+
+1. Add 80 tokens for the section match - 80 tokens overcommitted (100%)
+2. Add 60 promo codes for MR-1.3.55 - 20 tokens overcommitted (25%)
+3. 40 tokens are redeemed from the section match - 20 tokens overcommitted (50%)
+4. Add 20 tokens for MMG - 60 unclaimed tokens (67%)
+5. MR-1.3.56 becomes ready for release, add 100 tokens
+
+tokens
+- id
+- created_at
+- updated_at
+- generated_at
+- token
+- note
+
+promo_codes
+- id
+- created_at
+- updated_at
+- generated_at
+- redeemed_at
+- bundle_id
+- version
+- is_valid
+- code
+- token_id

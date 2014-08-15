@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+var newrelic = require('newrelic'),
+    debug = require('debug')('http'),
+    app = require('../app');
+
+app.set('port', process.env.PORT || 3000);
+debug('Express server starting on port ' + app.get('port'));
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+});

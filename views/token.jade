@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  .row
+    .col-xs-12.col-sm-12
+      h2 Promo Code
+  .row
+    .col-xs-12.col-sm-12
+      p
+        | This promo code will allow you to download Make Ready free of charge, 
+        | but don't wait too long since it will expire in #[strong= days_left].
+  .row
+    .col-xs-12.col-sm-12
+      form(role='form')
+        .form-group
+          input.input-lg.form-control.text-uppercase#promo_code(type='text', value='#{promo_code}', readonly)
+  .row
+    .col-xs-12.col-sm-12
+      a.btn.btn-primary.btn-block.btn-lg(href="https://phobos.apple.com/WebObjects/MZFinance.woa/wa/freeProductCodeWizard?code=#{promo_code}") Redeem in the App Store
+  .row
+    .col-xs-12.col-sm-12
+      p.help-block Or redeem manually in #[a(href='http://support.apple.com/kb/ht1574#iOSdev') iTunes]

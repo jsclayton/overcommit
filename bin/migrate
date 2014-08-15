@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+var db = require('../lib/db');
+
+db.sequelize.sync({ force: false, logging: console.log }).complete(function (err) {
+  if (err) {
+    console.log('Error migrating database: ' + err);
+  }
+});

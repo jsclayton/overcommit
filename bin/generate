@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+var rand = require('../lib/token-generator');
+
+for (i = 0; i < 100; i++) {
+  console.log(rand.generate());
+}
